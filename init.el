@@ -145,6 +145,12 @@ With negative N, comment out original line and use the absolute value."
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 
+;; EMMS
+(add-to-list 'load-path "~/emms/lisp/")
+(require 'emms-setup)
+(emms-standard)
+(emms-default-players)
+
 ;;; .emacs ends here
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
