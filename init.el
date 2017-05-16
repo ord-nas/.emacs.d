@@ -177,6 +177,25 @@ With negative N, comment out original line and use the absolute value."
 
 (define-key dired-mode-map "Y" 'ora-dired-rsync)
 
+;; Don't warn about "file changed on disk" in /mnt/hgfs
+
+(defun update-buffer-modtime-if-vmware-shared-dir ()
+  (when (string-prefix-p "/mnt/hgfs/" buffer-file-name)
+    (let ((attributes (file-attributes buffer-file-name)))
+      (set-visited-file-modtime (nth 5 attributes))
+      t)))
+
+(defun verify-visited-file-modtime--ignore-vmware-shared-dir (original &optional buffer)
+  (or (funcall original buffer)
+      (with-current-buffer buffer
+        (update-buffer-modtime-if-vmware-shared-dir))))
+(advice-add 'verify-visited-file-modtime :around #'verify-visited-file-modtime--ignore-vmware-shared-dir)
+
+(defun ask-user-about-supersession-threat--ignore-vmware-shared-dir (original &rest arguments)
+  (unless (string-prefix-p "/mnt/hgfs/" buffer-file-name)
+    (apply original arguments)))
+(advice-add 'ask-user-about-supersession-threat :around #'ask-user-about-supersession-threat--ignore-vmware-shared-dir)
+
 ;;; .emacs ends here
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
