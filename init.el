@@ -151,6 +151,32 @@ With negative N, comment out original line and use the absolute value."
 (emms-standard)
 (emms-default-players)
 
+;; rsync folder - source https://oremacs.com/2016/02/24/dired-rsync/
+(defun ora-dired-rsync (dest)
+  (interactive
+   (list
+    (read-file-name "Rsync to: ")))
+  ;; store all selected files into "files" list
+  (let (;; the rsync command
+        (tmtxt/rsync-command "rsync -arvz --progress ")
+	(src default-directory))
+    ;; Strip /ssh: from directory
+    (if (and (> (length src) 5)
+	     (string= "/ssh:" (substring src 0 5)))
+	(setq src (substring src 5)))
+    ;; append the source and destination
+    (setq tmtxt/rsync-command
+          (concat tmtxt/rsync-command src " " dest))
+    ;; run the async shell command
+    (let ((default-directory "~"))
+      (async-shell-command tmtxt/rsync-command "*rsync*"))
+    ;;(start-process "rsync" "*rsync*" "rsync" "-arvz" "--progress" src dest)
+    ;;(start-process "pwd" "*pwd*" "pwd")
+    ;; finally, switch to that window
+    (other-window 1)))
+
+(define-key dired-mode-map "Y" 'ora-dired-rsync)
+
 ;;; .emacs ends here
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
