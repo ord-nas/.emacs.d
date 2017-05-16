@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+src="$1"
+dst="$2"
+
+rsync -av "$1/" "$2" --exclude ".git"

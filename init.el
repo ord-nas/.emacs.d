@@ -196,6 +196,18 @@ With negative N, comment out original line and use the absolute value."
     (apply original arguments)))
 (advice-add 'ask-user-about-supersession-threat :around #'ask-user-about-supersession-threat--ignore-vmware-shared-dir)
 
+;; System for cloning certain directories on save
+
+(setq directory-clone-list
+      '(("/home/sandro/Documents/Canvas/" "/mnt/hgfs/Canvas/")))
+
+(defun clone-directory-if-applicable ()
+  (dolist (entry directory-clone-list)
+    (let ((src (first entry)) (dst (second entry)))
+      (when (string-prefix-p src buffer-file-name)
+	(call-process "~/.emacs.d/dir-copy-script" nil nil nil src dst)))))
+(add-hook 'after-save-hook 'clone-directory-if-applicable)
+
 ;;; .emacs ends here
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
