@@ -206,9 +206,10 @@ With negative N, comment out original line and use the absolute value."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(inhibit-startup-screen t)
  '(grok-jumps-use-selected-window t)
- '(ido-auto-merge-delay-time 100.0))
+ '(ido-auto-merge-delay-time 100.0)
+ '(inhibit-startup-screen t)
+ '(magit-log-arguments (quote ("--graph" "--color" "--decorate" "-n256"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
