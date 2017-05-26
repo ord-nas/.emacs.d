@@ -208,6 +208,23 @@ With negative N, comment out original line and use the absolute value."
 	(call-process "~/.emacs.d/dir-copy-script" nil nil nil src dst)))))
 (add-hook 'after-save-hook 'clone-directory-if-applicable)
 
+;; org-mode defaults
+(with-eval-after-load 'org
+  ;; Indent levels
+  (setq org-startup-indented t)
+  ;; Use visual-line-mode
+  (add-hook 'org-mode-hook #'visual-line-mode)
+  ;; Unmap M-direction (since we use that globally for window switching ...
+  (define-key org-mode-map (kbd "M-<up>") nil)
+  (define-key org-mode-map (kbd "M-<down>") nil)
+  (define-key org-mode-map (kbd "M-<right>") nil)
+  (define-key org-mode-map (kbd "M-<left>") nil)
+  ;; ... and rebind to s-direcion
+  (define-key org-mode-map (kbd "s-<up>") 'org-metaup)
+  (define-key org-mode-map (kbd "s-<down>") 'org-metadown)
+  (define-key org-mode-map (kbd "s-<right>") 'org-metaright)
+  (define-key org-mode-map (kbd "s-<left>") 'org-metaleft))
+
 ;;; .emacs ends here
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
