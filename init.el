@@ -205,7 +205,7 @@ With negative N, comment out original line and use the absolute value."
 
 (defun clone-directory-if-applicable ()
   (dolist (entry directory-clone-list)
-    (let ((src (first entry)) (dst (second entry)))
+    (let ((src (nth 0 entry)) (dst (nth 1 entry)))
       (when (string-prefix-p src buffer-file-name)
 	(call-process "~/.emacs.d/dir-copy-script" nil nil nil src dst)))))
 (add-hook 'after-save-hook 'clone-directory-if-applicable)
