@@ -175,7 +175,9 @@ With negative N, comment out original line and use the absolute value."
     ;; finally, switch to that window
     (other-window 1)))
 
-(define-key dired-mode-map "Y" 'ora-dired-rsync)
+(eval-after-load "dired"
+  '(progn
+     (define-key dired-mode-map "Y" 'ora-dired-rsync)))
 
 ;; Don't warn about "file changed on disk" in /mnt/hgfs
 
