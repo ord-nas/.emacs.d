@@ -225,7 +225,9 @@ With negative N, comment out original line and use the absolute value."
   (define-key org-mode-map (kbd "s-<up>") 'org-metaup)
   (define-key org-mode-map (kbd "s-<down>") 'org-metadown)
   (define-key org-mode-map (kbd "s-<right>") 'org-metaright)
-  (define-key org-mode-map (kbd "s-<left>") 'org-metaleft))
+  (define-key org-mode-map (kbd "s-<left>") 'org-metaleft)
+  ;; Don't steal my C-, binding, I like it!
+  (define-key org-mode-map (kbd "C-,") nil))
 
 ;;; .emacs ends here
 (put 'downcase-region 'disabled nil)
