@@ -229,6 +229,9 @@ With negative N, comment out original line and use the absolute value."
   ;; Don't steal my C-, binding, I like it!
   (define-key org-mode-map (kbd "C-,") nil))
 
+;; pdf-tools
+(pdf-tools-install)
+
 ;;; .emacs ends here
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
