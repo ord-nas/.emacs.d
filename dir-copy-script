@@ -3,4 +3,4 @@
 src="$1"
 dst="$2"
 
-rsync -av "$1/" "$2" --exclude ".git"
+rsync -av "$1/" "$2" --exclude ".git" --delete
