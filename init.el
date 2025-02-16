@@ -254,7 +254,10 @@ With negative N, comment out original line and use the absolute value."
  '(grok-jumps-use-selected-window t)
  '(ido-auto-merge-delay-time 100.0)
  '(inhibit-startup-screen t)
- '(magit-log-arguments (quote ("--graph" "--color" "--decorate" "-n256"))))
+ '(magit-blame-arguments '("-w" "-C" "-M"))
+ '(magit-log-arguments '("--graph" "--color" "--decorate" "-n256"))
+ '(package-selected-packages '(web-mode pdf-tools magit expand-region))
+ '(web-mode-enable-auto-indentation nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
