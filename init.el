@@ -201,7 +201,8 @@ With negative N, comment out original line and use the absolute value."
 ;; System for cloning certain directories on save
 
 (setq directory-clone-list
-      '(("/home/sandro/Documents/Canvas/" "/mnt/hgfs/Canvas/")))
+      '(("/home/sandro/Documents/Canvas/" "/mnt/hgfs/Canvas/")
+	("/home/sandro/Documents/Newton Fractal/" "/mnt/hgfs/Newton Fractal/")))
 
 (defun clone-directory-if-applicable ()
   (dolist (entry directory-clone-list)
