@@ -14,6 +14,9 @@
 
 (ido-mode t)
 
+;; Disabled the bell
+(setq ring-bell-function 'ignore)
+
 ;; Use meta + direction to move from window to window
 (global-set-key (kbd "M-<up>") 'windmove-up)
 (global-set-key (kbd "M-<down>") 'windmove-down)
