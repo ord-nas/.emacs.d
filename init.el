@@ -144,6 +144,14 @@ With negative N, comment out original line and use the absolute value."
 ;; web-mode
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+(defun my-web-mode-hook ()
+  (setq indent-tabs-mode nil))
+(add-hook 'web-mode-hook  'my-web-mode-hook)
+
+;; Javascript
+(defun my-js-mode-hook ()
+  (setq indent-tabs-mode nil))
+(add-hook 'js-mode-hook 'my-js-mode-hook)
 
 ;; EMMS
 (add-to-list 'load-path "~/emms/lisp/")
